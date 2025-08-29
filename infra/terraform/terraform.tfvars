@@ -1,3 +1,3 @@
-cluster_name = "pavel-devops"
+cluster_name = "devops"
 region       = "us-east-1"
 environment  = "dev"
