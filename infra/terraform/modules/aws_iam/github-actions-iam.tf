@@ -6,7 +6,7 @@ terraform {
   }
 }
 
-resource "aws_iam_role" "github_actions_ecr_perion" {
+resource "aws_iam_role" "github_actions_ecr" {
   name               = "github-actions-push"
   assume_role_policy = data.aws_iam_policy_document.github_actions_assume_role.json
   description        = "Role for GitHub Actions to push to ECR"
@@ -31,18 +31,18 @@ data "aws_iam_policy_document" "github_actions_assume_role" {
     condition {
       test     = "StringLike"
       variable = "token.actions.githubusercontent.com:sub"
-      values   = ["repo:metarhos/perion:*"] # TODO: variable
+      values   = ["repo:sergmann/serg:*"] # TODO: variable
     }
   }
 }
 
-resource "aws_iam_policy" "ecr_push_perion" {
-  name        = "GitHubActions-ECR-perion-Push"
+resource "aws_iam_policy" "ecr_push" {
+  name        = "GitHubActions-ECR-Push"
   description = "Minimum permissions for GitHub Actions to push to ECR"
-  policy      = data.aws_iam_policy_document.ecr_push_perion.json
+  policy      = data.aws_iam_policy_document.ecr_push.json
 }
 
-data "aws_iam_policy_document" "ecr_push_perion" {
+data "aws_iam_policy_document" "ecr_push" {
   statement {
     effect = "Allow"
     actions = [
@@ -65,14 +65,14 @@ data "aws_iam_policy_document" "ecr_push_perion" {
   }
 }
 
-resource "aws_iam_role_policy_attachment" "ecr_push_perion" {
-  role       = aws_iam_role.github_actions_ecr_perion.name
-  policy_arn = aws_iam_policy.ecr_push_perion.arn
+resource "aws_iam_role_policy_attachment" "ecr_push" {
+  role       = aws_iam_role.github_actions_ecr.name
+  policy_arn = aws_iam_policy.ecr_push.arn
 }
 
 data "aws_caller_identity" "current" {}
 
 output "github_actions_role_arn" {
-  value       = aws_iam_role.github_actions_ecr_perion.arn
+  value       = aws_iam_role.github_actions_ecr.arn
   description = "ARN of the IAM role for GitHub Actions"
 }
