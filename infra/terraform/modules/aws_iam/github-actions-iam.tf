@@ -7,7 +7,7 @@ terraform {
 }
 
 resource "aws_iam_role" "github_actions_ecr_perion" {
-  name               = "github-actions-push-ecr-pavel"
+  name               = "github-actions-push"
   assume_role_policy = data.aws_iam_policy_document.github_actions_assume_role.json
   description        = "Role for GitHub Actions to push to ECR"
 }
@@ -61,7 +61,7 @@ data "aws_iam_policy_document" "ecr_push_perion" {
       "ecr:UploadLayerPart",
       "ecr:DescribeRepositories"
     ]
-    resources = ["arn:aws:ecr:us-east-1:760370564012:repository/pavel-hello-world-node-images"]
+    resources = ["arn:aws:ecr:us-east-1:760370564012:repository/hello-world-node-images"]
   }
 }
 

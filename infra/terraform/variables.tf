@@ -77,5 +77,5 @@ variable "use_mock" {
 variable "repo_name" {
   description = "ECR repo name"
   type        = string
-  default     = "pavel-hello-world-node-images"
+  default     = "hello-world-node-images"
 }

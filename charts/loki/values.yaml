@@ -2,7 +2,7 @@ nameOverride: ""
 fullnameOverride: ""
 replicaCount: 2
 image:
-  repository: 760370564012.dkr.ecr.us-east-1.amazonaws.com/pavel-hello-world-node-images
+  repository: 760370564012.dkr.ecr.us-east-1.amazonaws.com/hello-world-node-images
   tag: "ed595ea"
   pullPolicy: IfNotPresent
 service:
